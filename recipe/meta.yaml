@@ -1,5 +1,4 @@
-{% set version = '1.4-1' %}
-
+{% set version = '1.4-9' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,32 +7,33 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: intamap_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/intamap_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/intamap/intamap_{{ version }}.tar.gz
-  sha256: fb2b5afa37039c17b7a2111dee8704b8849018e0af94b7f356b8e7a02fed1eea
+    - {{ cran_mirror }}/src/contrib/intamap_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/intamap/intamap_{{ version }}.tar.gz
+  sha256: 76d234ccacdaea1adea216e1a29c9bcd292ee0d472674086ba3d378d277c1a18
 
 build:
+  merge_build_host: True  # [win]
   number: 0
-  skip: true  # [win]
-
+  noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
+
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
     - r-mass
     - r-automap
     - r-doparallel
     - r-evd
     - r-foreach
-    - r-gstat >=0.9
+    - r-gstat >=0.9_36
     - r-mvtnorm
     - r-rgdal
-    - r-sp >=0.9
-
+    - r-sp >=0.9_0
   run:
     - r-base
     - r-mass
@@ -41,23 +41,40 @@ requirements:
     - r-doparallel
     - r-evd
     - r-foreach
-    - r-gstat >=0.9
+    - r-gstat >=0.9_36
     - r-mvtnorm
     - r-rgdal
-    - r-sp >=0.9
+    - r-sp >=0.9_0
 
 test:
   commands:
-    - $R -e "library('intamap')"  # [not win]
+    - $R -e "library('intamap')"           # [not win]
     - "\"%R%\" -e \"library('intamap')\""  # [win]
 
 about:
   home: https://CRAN.R-project.org/package=intamap
   license: GPL (>= 2)
-  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
   summary: Provides classes and methods for automated spatial interpolation.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
 
 extra:
   recipe-maintainers:
+    - conda-forge/r
     - daf
+
+# Package: intamap
+# Version: 1.4-9
+# Date: 2018-05-02
+# Title: Procedures for Automated Interpolation
+# Author: Edzer Pebesma <edzer.pebesma@uni-muenster.de>, Jon Olav Skoien <jon.skoien@gmail.com> with contributions from Olivier Baume, A.Chorti, D.T. Hristopulos, H. Kazianka, S.J. Melles, G. Spiliopoulos
+# Maintainer: Jon Olav Skoien <jon.skoien@gmail.com>
+# Depends: R (>= 2.14.0), sp (>= 0.9-0)
+# Imports: gstat (>= 0.9-36), automap, mvtnorm, MASS, evd, doParallel, foreach, rgdal, parallel, stats, methods, grDevices, utils, graphics
+# Enhances: psgp
+# Description: Provides classes and methods for automated spatial interpolation.
+# License: GPL (>= 2)
+# NeedsCompilation: no
+# Packaged: 2018-05-02 12:43:57 UTC; skoiejo
+# Repository: CRAN
+# Date/Publication: 2018-05-02 13:38:35 UTC
