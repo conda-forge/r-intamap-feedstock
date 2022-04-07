@@ -1,4 +1,4 @@
-{% set version = '1.4-9' %}
+{% set version = "1.4-16" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/intamap_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/intamap/intamap_{{ version }}.tar.gz
-  sha256: 76d234ccacdaea1adea216e1a29c9bcd292ee0d472674086ba3d378d277c1a18
+  sha256: 6675d3fe4af19f2bff44f8eb8353a02fb535b0d0b63e15ec998eb9cdc6efefea
 
 build:
-  merge_build_host: True  # [win]
-  number: 3
+  merge_build_host: true  # [win]
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
@@ -23,9 +23,11 @@ build:
 requirements:
   build:
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-mass
+    - r-mba
     - r-automap
     - r-doparallel
     - r-evd
@@ -37,6 +39,7 @@ requirements:
   run:
     - r-base
     - r-mass
+    - r-mba
     - r-automap
     - r-doparallel
     - r-evd
@@ -53,10 +56,11 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=intamap
-  license: GPL (>= 2)
+  license: GPL-2.0-or-later
   summary: Provides classes and methods for automated spatial interpolation.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
