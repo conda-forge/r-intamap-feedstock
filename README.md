@@ -3,7 +3,7 @@ About r-intamap
 
 Home: https://CRAN.R-project.org/package=intamap
 
-Package license: GPL (>= 2)
+Package license: GPL-2.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-intamap-feedstock/blob/main/LICENSE.txt)
 
