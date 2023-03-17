@@ -1,11 +1,11 @@
-About r-intamap
-===============
+About r-intamap-feedstock
+=========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-intamap-feedstock/blob/main/LICENSE.txt)
 
 Home: https://CRAN.R-project.org/package=intamap
 
 Package license: GPL-2.0-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-intamap-feedstock/blob/main/LICENSE.txt)
 
 Summary: Provides classes and methods for automated spatial interpolation.
 
