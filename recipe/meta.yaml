@@ -32,7 +32,6 @@ requirements:
     - r-foreach
     - r-gstat >=0.9_36
     - r-mvtnorm
-    - r-rgdal
     - r-sp >=0.9_0
   run:
     - r-base
@@ -44,7 +43,6 @@ requirements:
     - r-foreach
     - r-gstat >=0.9_36
     - r-mvtnorm
-    - r-rgdal
     - r-sp >=0.9_0
 
 test:
