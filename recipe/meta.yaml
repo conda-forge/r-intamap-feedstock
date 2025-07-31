@@ -1,4 +1,4 @@
-{% set version = "1.5-10" %}
+{% set version = "1.5-11" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/intamap_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/intamap/intamap_{{ version }}.tar.gz
-  sha256: c5653d31e62a1f5bf62d5831f3d6cf4703b7fb82dfb5bc59c63c50a6e5540704
+  sha256: f50c030a84d592976a69a730482ef76612b6472a217042e7b145828c46cc37df
 
 build:
   number: 0
